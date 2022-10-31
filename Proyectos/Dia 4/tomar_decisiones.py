@@ -20,7 +20,7 @@
 edad = 16
 calificacion = 9
 if edad >= 18:
-    print("Eres mayo de edad")
+    print("Eres mayor de edad")
     if calificacion >= 7:
         print(f"Aprobaste con {calificacion}")
     else:
