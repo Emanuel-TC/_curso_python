@@ -1,0 +1,2 @@
+print("Hola, necesito que respondas las siguientes preguntas")
+print("La cerveza ideal se llama: " + input("¿Cuál es la nacionalidad femenina del país del que provienes? ") + " de " + input("El organo que bombea sangre al cuerpo es el: "))
