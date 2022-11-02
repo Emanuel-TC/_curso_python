@@ -9,3 +9,8 @@ print(f"El numero mayor de la lista {lista_numeros} es: {max(lista_numeros)} y e
 #en una lista de string se maxima o minimza alfabéticamente:
 nombres = ['Juan','Pedro','Jesus']
 print(f"En la lista {nombres}, alfabéticamente va primero: {min(nombres)}, y al final {max(nombres)}")
+
+diccionario_edades = {"Carlos":55, "María":42, "Mabel":78, "José":44, "Lucas":24, "Rocío":35, "Sebastián":19, "Catalina":2,"Darío":49}
+edad_minima = min(diccionario_edades.values())
+ultimo_nombre = max(diccionario_edades.keys())
+print(edad_minima)
