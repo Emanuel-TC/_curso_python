@@ -20,7 +20,7 @@ def dos_ceros_repetidos(*args):
     return False
 
 
-print(dos_ceros_repetidos(5,6,1,0,0,9,3,5))
+print(dos_ceros_repetidos(0,5,6,1,0,8,9,10,11,12,15,16,18,1,2,2,2,0,0,9,3,5,0))
 print(dos_ceros_repetidos(6,0,5,1,0,3,0,1))
 
 
