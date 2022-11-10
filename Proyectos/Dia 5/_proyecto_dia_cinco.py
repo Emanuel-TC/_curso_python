@@ -69,7 +69,7 @@ while vidas < 7:
     if revisar_letra_en_palabra(letra,palabra_escogida) == False:
         vidas += 1
         if vidas >= 7:
-            print("Lo siento, has fallado")
+            print(f"Lo siento, has fallado, la palabra era {palabra_escogida}")
         else:
             print(f"Te quedan {7-vidas} vidas")
             pass
@@ -80,14 +80,7 @@ while vidas < 7:
         palabra_llenada = reemplaza_espacio_por_letra(letra_encontrada, palabra_escogida)
         print(palabra_llenada)
         if revisar_espacios(palabra_llenada) == False:
+            print(f"Felicidades, adivinaste, la palabra escogida si es: {palabra_escogida}")
             break
         else:
             pass
-    #print(palabra_llenada)
-
-print(f"Felicidades, adivinaste, la palabra escogida si es: {palabra_escogida}")
-
-
-
-
-
