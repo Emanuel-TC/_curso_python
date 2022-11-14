@@ -1,6 +1,2 @@
-Soy el nuevo archivo
-Hola
-mundo
-aqui
-estoy
-Soy la linea final
+contenido eliminado
+se ha registrado un error
