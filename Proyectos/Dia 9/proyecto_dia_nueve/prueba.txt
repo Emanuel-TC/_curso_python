@@ -1,0 +1,5 @@
+HOla, esta es una prueba para ver si
+las cadenas que se escirben aquí pueden ser leidas y
+despues porcesadas para
+analizarlas
+Sí hay un código Nter-15496
