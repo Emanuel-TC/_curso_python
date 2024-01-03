@@ -1,10 +1,15 @@
+# En este archivo conoceremos el uso de de slicing
 texto = "ABCDEFGHIJKLM"
+# Fragmentamos la cadena a partir de la posición 2 y hasta la posición 10
 fragmento = texto[2:10]
 print(fragmento)
+# Luego vamos a extraer los caracteres de 2 en 2
 fragmento = texto[2:10:2]
 print(fragmento)
+# extraemos todos los valores de la cadena pero de dos en 2
 fragmento = texto[::2]
 print(fragmento)
+# Ahora extraemos de 2 en dos pero en orden inverso
 fragmento = texto[::-2]
 print(fragmento)
 
