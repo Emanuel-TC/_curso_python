@@ -21,9 +21,7 @@ numero_de_palabras = list(texto.split()) #esta función separa el texto en eleme
 if "." in numero_de_palabras[-1]:
     ultima_palabra = numero_de_palabras[-1]
     ultima_palabra = ultima_palabra.split(".")
-    print(f"Esta es la lista de la última palabra: {ultima_palabra}")
     ultima_palabra = ultima_palabra[0]
-    print(f"La última palbra es {ultima_palabra}")
 else:
     ultima_palabra = numero_de_palabras[-1]
 primer_letra = texto[0] #Solicito valor del primer índice del texto original
