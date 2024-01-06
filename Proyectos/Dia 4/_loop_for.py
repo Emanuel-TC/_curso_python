@@ -60,3 +60,14 @@ for numero in lista_numeros:
     else:
         suma_impares = suma_impares + numero
         print(f"La suma de los numeros impares es: {suma_impares}")
+
+'''Práctica Loop For 1
+Utilizando loops For, saluda a todos los miembros de una clase, imprimiendo "Hola" + su nombre.
+
+Por ejemplo: "Hola María"
+
+alumnos_clase = ["María", "José", "Carlos", "Martina", "Isabel", "Tomás", "Daniela"]'''
+
+alumnos_clase = ["María", "José", "Carlos", "Martina", "Isabel", "Tomás", "Daniela"]
+for alumno in alumnos_clase:
+    print(f"Hola {alumno}")
