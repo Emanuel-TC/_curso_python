@@ -23,8 +23,6 @@ mi_lista = list(range(3,301,3))
 
 suma_cuadrados = 0
 for numero in range(1,16):
-    print(f"El cuadrado del numero {numero} es: ")
-    numero = numero**2
-    print(numero)
-    suma_cuadrados = suma_cuadrados + numero
+    print(f"El cuadrado del numero {numero} es: {numero**2} ")
+    suma_cuadrados += numero**2
     print(f"La suma hasta el momento es de: {suma_cuadrados}")
