@@ -51,3 +51,5 @@ portugues = ['um','dois','três','quatro','cinco']
 ingles = ['one','two','three','four','five']
 numeros = list(zip(espaniol,portugues,ingles))
 print(numeros)
+for es,po,en in numeros:
+    print(f"El 1 en español es {es}, en portugués es {po}, y en inglés es: {en}")
