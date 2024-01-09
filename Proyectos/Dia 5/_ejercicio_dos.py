@@ -10,8 +10,8 @@ Por ejemplo si al invocar esta función pasamos la palabra
 def palabra_sin_letras_repetidas_en_orden(palabra):
     palabra = palabra.lower()
     lista = list(palabra)
-    mi_set = set(lista)
-    lista = list(mi_set)
+    lista = set(lista)
+    lista = list(lista)
     lista = sorted(lista)
     return lista
 print(palabra_sin_letras_repetidas_en_orden("Entretenido"))
