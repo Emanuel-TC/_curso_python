@@ -30,7 +30,7 @@ lista_numeros = [numero if numero*2 >= 10 else f"el numero {numero} multiplicado
 print(lista_numeros)
 
 pies = list(range(10,51,10))
-metros =[pie*3.281 for pie in pies]
+metros =[pie/3.281 for pie in pies]
 print(metros)
 
 
