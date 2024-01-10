@@ -22,3 +22,34 @@ for linea in mi_archivo:
     print(f"{contador}. Aquí dice: {linea}")
     contador += 1
 mi_archivo.close()
+
+# Ejercicios
+
+'''Práctica Abrir y Manipular Archivos 1
+Abre el archivo texto.txt e imprime su contenido.
+
+Nota: el archivo se encuentra guardado en la misma carpeta donde se aloja tu código'''
+
+mi_archivo = open("texto.txt")
+print(mi_archivo.read())
+mi_archivo.close()
+
+'''Práctica Abrir y Manipular Archivos 2
+Imprime la primera línea del archivo texto.txt
+
+No olvides abrir el archivo y cerrarlo luego de ejecutar tu código.
+
+Nota: el archivo se encuentra guardado en la misma carpeta donde se aloja tu código'''
+
+mi_archivo = open("texto.txt")
+una_linea = mi_archivo.readline()
+print(una_linea)
+mi_archivo.close()
+
+'''Práctica Abrir y Manipular Archivos 3
+Abre el archivo texto.txt e imprime únicamente la segunda línea.'''
+mi_archivo = open("texto.txt")
+primer_linea = mi_archivo.readline()
+segunda_linea = mi_archivo.readline()
+print(segunda_linea)
+mi_archivo.close()
