@@ -25,8 +25,25 @@ print("Pero si quieres imprimir todos los que hay en las subcarpetas (si las hay
 for txt in Path(base).glob("**/*.txt"):
     print(f"El archivo: {txt}")
 print("Si quieres imprimir una direccion a partir de un punto en especial, haces:")
-guia = Path("Europa","España","Barcelona","Ruta_Sagrada.txt")
-desde_europa = guia.relative_to("Europa")
-desde_espania = guia.relative_to("Europa","España")
-print(desde_europa)
-print(desde_espania)
+guia = Path("Europa","España","Barcelona","Sagrada_Familia.txt")
+en_europa = guia.relative_to("Europa")
+en_espania = guia.relative_to("Europa","España")
+print(en_europa)
+print(en_espania)
+
+
+'''Práctica Path 1
+Almacena en la variable ruta_base, un objeto Path que señale el directorio base del usuario.
+
+Recuerda importar Path del módulo pathlib, y utilizar el método home()'''
+
+ruta_base = Path.home()
+
+'''Práctica Path 2
+Implementa y crea una ruta relativa que nos permita llegar al archivo "practicas_path.py" a partir de la siguiente estructura de carpetas:'''
+ruta = Path("Curso Python","Día 6","practicas_path.py")
+
+'''Práctica Path 3
+Implementa y crea una ruta absoluta que nos permita llegar al archivo "practicas_path.py" a partir de la siguiente estructura de carpetas:'''
+base = Path.home()
+ruta= Path(base,"Curso Python","Día 6","practicas_path.py")
