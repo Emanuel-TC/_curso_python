@@ -20,7 +20,7 @@ def encontrar_opcion(opcion,opciones):
             return op
 
 def seleccionar_categoria():
-    categorias = ["Carnes","Ensaladas","Pastas","Postres"]
+    categorias = listar_categorias()
     imprimir_categorias()
     categoria = input("Ingresa la categoría que quieres seleccionar: \n")
     while categoria not in categorias:
@@ -30,6 +30,11 @@ def seleccionar_categoria():
         categoria = input("Ingresa la categoría que quieres seleccionar: \n")
     else:
         return categoria
+def listar_categorias():
+    categorias = []
+    for categoria in os.listdir(ruta_recetas):
+        categorias.append(categoria)
+    return categorias
 def imprimir_categorias():
     print("Las categorías son las siguientes:\n")
     for _ in os.listdir(ruta_recetas):
@@ -39,22 +44,28 @@ def leer_receta():
     categoria = seleccionar_categoria()
     ruta_categoria = Path(ruta_recetas, categoria)
     system("cls")
-    print(f"Las recetas en la categoria {categoria} son: \n")
-    for receta in Path(ruta_categoria).glob("**/*.txt"):
-        nombre_receta = Path(receta.name)
-        print(nombre_receta)
-    receta_a_leer = input("Ingresa el nombre de la receta que deseas leer sin la extensión .txt\n") + ".txt"
-    receta_a_leer = Path(ruta_categoria,receta_a_leer)
-    while not receta_a_leer.exists():
-        print(f"El archivo {receta_a_leer} no existe")
+    total_recetas = contar_recetas(ruta_categoria)
+    if total_recetas > 0:
+        print(f"Las recetas en la categoria {categoria} son: \n")
+        for receta in Path(ruta_categoria).glob("**/*.txt"):
+            nombre_receta = Path(receta.name)
+            print(nombre_receta)
         receta_a_leer = input("Ingresa el nombre de la receta que deseas leer sin la extensión .txt\n") + ".txt"
-        receta_a_leer = Path(ruta_categoria, receta_a_leer)
-    else:
-        print("La receta dice lo siguiente:\n")
-        print(receta_a_leer.read_text()+"\n")
-        salir = (input("\nDeseas regresar al menú principal (s/n)?\n")).lower()
-        while salir != 's':
+        receta_a_leer = Path(ruta_categoria,receta_a_leer)
+        while not receta_a_leer.exists():
+            print(f"El archivo {receta_a_leer} no existe")
+            receta_a_leer = input("Ingresa el nombre de la receta que deseas leer sin la extensión .txt\n") + ".txt"
+            receta_a_leer = Path(ruta_categoria, receta_a_leer)
+        else:
+            print("La receta dice lo siguiente:\n")
+            print(receta_a_leer.read_text()+"\n")
             salir = (input("\nDeseas regresar al menú principal (s/n)?\n")).lower()
+            if salir == "n":
+                leer_receta()
+            else:
+                pass
+    else:
+        print("Lo siento, en esta categoría no existen recetas actualmente, volveremos al menú principal y crea una nueva receta")
 
     #return True
 def crear_receta():
@@ -68,12 +79,26 @@ def crear_receta():
     while salir != "s":
         texto_receta = input("Ingresa el contenido de tu receta:\n")
         lista_palabras.append(texto_receta)
-        salir = input("Deseas salir (s/n)").lower()
+        salir = input("Deseas terminar la receta (s/n)").lower()
     for _ in lista_palabras:
         archivo.write(_+"\n")
     archivo.close()
 def crear_categoria():
-    return True
+    imprimir_categorias()
+    nombre_categoria = input("Ingresa el nombre de la categoría que deseas crear: \n")
+    system("cls")
+    ruta_categoria = Path(ruta_recetas, nombre_categoria)
+    categorias = listar_categorias()
+    if nombre_categoria not in categorias:
+        os.mkdir(ruta_categoria)
+        if ruta_categoria.exists():
+            print("La categoría fue creada con éxito")
+            imprimir_categorias()
+            salir = (input("\nDeseas regresar al menú principal (s/n)?\n")).lower()
+            while salir != 's':
+                salir = (input("\nDeseas regresar al menú principal (s/n)?\n")).lower()
+        else:
+            print("Ocurrió un error xc")
 def eliminar_receta():
     return True
 def eliminar_categoria():
