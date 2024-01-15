@@ -39,6 +39,10 @@ def imprimir_categorias():
     print("Las categorías son las siguientes:\n")
     for _ in os.listdir(ruta_recetas):
         print(_)
+def imprimir_recetas(ruta_categoria):
+    for receta in Path(ruta_categoria).glob("**/*.txt"):
+        nombre_receta = Path(receta.name)
+        print(nombre_receta)
 
 def leer_receta():
     categoria = seleccionar_categoria()
@@ -47,9 +51,7 @@ def leer_receta():
     total_recetas = contar_recetas(ruta_categoria)
     if total_recetas > 0:
         print(f"Las recetas en la categoria {categoria} son: \n")
-        for receta in Path(ruta_categoria).glob("**/*.txt"):
-            nombre_receta = Path(receta.name)
-            print(nombre_receta)
+        imprimir_recetas(ruta_categoria)
         receta_a_leer = input("Ingresa el nombre de la receta que deseas leer sin la extensión .txt\n") + ".txt"
         receta_a_leer = Path(ruta_categoria,receta_a_leer)
         while not receta_a_leer.exists():
@@ -65,12 +67,18 @@ def leer_receta():
             else:
                 pass
     else:
-        print("Lo siento, en esta categoría no existen recetas actualmente, volveremos al menú principal y crea una nueva receta")
+        system("cls")
+        print("Lo siento, en esta categoría no existen recetas actualmente, volveremos al menú principal y crea una nueva receta\n")
 
     #return True
 def crear_receta():
     categoria = seleccionar_categoria()
     system("cls")
+    ruta_categoria = Path(ruta_recetas,categoria)
+    total_recetas = contar_recetas(ruta_categoria)
+    if total_recetas > 0:
+        imprimir_recetas(ruta_categoria)
+        print(f"Las recetas en la categoria {categoria} son: \n")
     nombre_receta = input("Ingresa el nombre de la receta que deseas crear:\n") +".txt"
     ruta_receta = Path(ruta_recetas, categoria, nombre_receta)
     archivo = open(ruta_receta, "w")
@@ -100,7 +108,33 @@ def crear_categoria():
         else:
             print("Ocurrió un error xc")
 def eliminar_receta():
-    return True
+    categoria = seleccionar_categoria()
+    system("cls")
+    ruta_categoria = Path(ruta_recetas,categoria)
+    total_recetas = contar_recetas(ruta_categoria)
+    if total_recetas > 0:
+        print(f"Las recetas en la categoria {categoria} son: \n")
+        imprimir_recetas(ruta_categoria)
+        receta_a_eliminar = input("Ingresa el nombre de la receta que deseas eliminar sin la extensión .txt\n") + ".txt"
+        receta_a_eliminar = Path(ruta_categoria, receta_a_eliminar)
+        while not receta_a_eliminar.exists():
+            print(f"El archivo {receta_a_eliminar} no existe")
+            receta_a_eliminar = input("Ingresa el nombre de la receta que deseas eliminar sin la extensión .txt\n") + ".txt"
+            receta_a_eliminar = Path(ruta_categoria, receta_a_eliminar)
+        else:
+            os.remove(receta_a_eliminar)
+            if receta_a_eliminar.exists():
+                print("Ocurrió un error al eliminar el archivo")
+            else:
+                print("La receta fue eliminada")
+            salir = (input("\nDeseas regresar al menú principal (s/n)?\n")).lower()
+            if salir == "n":
+                eliminar_receta()
+            else:
+                pass
+    else:
+        system("cls")
+        print("Lo siento, en esta categoría no existen recetas actualmente, volveremos al menú principal:\n")
 def eliminar_categoria():
     return True
 def seleccionar_opcion(eleccion,opciones):
