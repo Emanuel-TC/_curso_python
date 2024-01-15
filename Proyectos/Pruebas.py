@@ -1,4 +1,5 @@
 import os
+import shutil
 from os import system
 from pathlib import Path
 ruta_recetas = Path(Path.home(),"Recetas")
@@ -103,8 +104,12 @@ def crear_categoria():
             print("La categoría fue creada con éxito")
             imprimir_categorias()
             salir = (input("\nDeseas regresar al menú principal (s/n)?\n")).lower()
-            while salir != 's':
-                salir = (input("\nDeseas regresar al menú principal (s/n)?\n")).lower()
+            if salir == "n":
+                print("Crear Categoria:\n")
+                crear_categoria()
+            else:
+                while salir != 's':
+                    salir = (input("\nDeseas regresar al menú principal (s/n)?\n")).lower()
         else:
             print("Ocurrió un error xc")
 def eliminar_receta():
@@ -136,7 +141,19 @@ def eliminar_receta():
         system("cls")
         print("Lo siento, en esta categoría no existen recetas actualmente, volveremos al menú principal:\n")
 def eliminar_categoria():
-    return True
+    categoria = seleccionar_categoria()
+    system("cls")
+    ruta_categoria = Path(ruta_recetas, categoria)
+    if ruta_categoria.exists():
+        shutil.rmtree(ruta_categoria)
+        if not ruta_categoria.exists():
+            print("La categoria fue eliminada\nLas categorías han quedado de la siguiente forma:\n")
+            listar_categorias()
+        else:
+            print("Ocurrió un error al eliminar la categoria")
+    else:
+        print("La categoria no existe, ingresa una correctamente:\n")
+        eliminar_categoria()
 def seleccionar_opcion(eleccion,opciones):
     for _ in opciones:
         if eleccion == "1. Leer receta":
