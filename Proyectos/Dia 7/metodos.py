@@ -14,6 +14,8 @@ piolin = Pajaro("amarillo", "canario")
 piolin.piar()
 piolin.volar(50)
 
+# Ejercicios prácticos
+
 '''
 Crea una clase Perro. Dicho perro debe poder ladrar.
 Crea el método ladrar() y ejecútalo en una instancia de Perro. 
