@@ -4,8 +4,9 @@ class Pajaro:
 
     #atributos de instancia
     def __init__(self,color,especie):
-        self.color = color
-        self.especie = especie
+            # atributo  # parámetro
+        self.color      = color
+        self.especie    = especie
 
 mi_pajaro = Pajaro("negro","Tucán")
 
@@ -14,6 +15,7 @@ if mi_pajaro.alas:
 else:
     print(f"Mi pájaro no tiene alas y es un {mi_pajaro.especie} con color {mi_pajaro.color}")
 
+# Ejercicios prácticos
 '''
 Práctica Atributos 1
 Crea una clase llamada Casa, y asígnale atributos: color, cantidad_pisos.
