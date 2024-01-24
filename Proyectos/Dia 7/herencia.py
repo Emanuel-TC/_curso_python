@@ -14,7 +14,9 @@ class Pajaro(Animal):
     #es posile ahorrar los atributos de la clase padre y añadir los que necesitamos
 
     def __init__(self, edad, color, altura_vuelo):
-        #usamos super
+        '''self.edad = edad
+        self.color = color'''
+        # usamos super y no es necesario el self.atributo
         super().__init__(edad, color)
         self.altura_vuelo = altura_vuelo
 
@@ -30,6 +32,7 @@ piolin.hablar()
 piolin.volar(20)
 print(f"Hace {piolin.edad} años nació un {piolin.__class__.__name__} de color {piolin.color}")
 
+# Ejercicios "Herencia Parte 1"
 '''
 Práctica Herencia 1
 Crea una clase llamada Persona, que tenga los siguientes atributos de instancia: nombre, edad. Crea otra clase, 
@@ -74,6 +77,7 @@ vento = Automovil()
 vento.acelerar(100)
 vento.frenar(10)
 
+# Herencia extendida
 class Padre:
     def hablar(self):
         print("Hola")
@@ -98,6 +102,7 @@ nieto = Nieto()
 nieto.hablar()
 nieto.reir()
 
+# Ejercicios Herencia Parte 2
 '''
 Práctica Herencia Extendida 1
 
