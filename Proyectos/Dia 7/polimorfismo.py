@@ -1,5 +1,5 @@
 # polimorfismo aplicado a un objeto que tiene métodos con el mismo nombre pero se pueden usar en objetos distintos
-0class Vaca:
+class Vaca:
     def __init__(self, nombre):
         self.nombre = nombre
 
