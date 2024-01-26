@@ -1,4 +1,5 @@
-class Vaca:
+# polimorfismo aplicado a un objeto que tiene métodos con el mismo nombre pero se pueden usar en objetos distintos
+0class Vaca:
     def __init__(self, nombre):
         self.nombre = nombre
 
@@ -18,11 +19,14 @@ oveja_uno = Oveja("Shawn")
 vaca_uno.hablar()
 oveja_uno.hablar()
 print("\n")
+
 for animal in [vaca_uno, oveja_uno]:
     animal.hablar()
     print("\n")
+
 def animal_hablar(animal):
     animal.hablar()
+
 animal_hablar(vaca_uno)
 animal_hablar(oveja_uno)
 
