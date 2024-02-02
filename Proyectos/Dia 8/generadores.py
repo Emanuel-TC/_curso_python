@@ -2,9 +2,10 @@ from PIL.XVThumbImagePlugin import g
 
 
 def mi_funcion():
-    lista = []
+    '''lista = []
     for numero in range(1, 5):
-        lista.append(numero * 10)
+        lista.append(numero * 10)'''
+    lista = [x * 10 for x in range(1,5)]
     return lista
 
 
@@ -88,10 +89,12 @@ un mensaje cada vez que sea llamado:
 Almacena el generador en la variable perder_vida 
 '''
 def contador_vidas():
-    yield "Te quedan 3 vidas"
-    yield "Te quedan 2 vidas"
-    yield "Te queda 1 vida"
-    yield "Game Over"
+    vidas = 3
+    while vidas != 0:
+        yield f"Te quedan {vidas} vidas"
+        vidas -=1
+        if vidas == 0:
+            yield "Game Over"
 
 perder_vida = contador_vidas()
 print(next(perder_vida))
