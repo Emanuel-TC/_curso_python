@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import shutil
 import send2trash
 '''archivo = open("archivo.txt", "w")
@@ -13,7 +14,10 @@ archivo.close()'''
 
 #send2trash.send2trash("archivo.txt")
 #para recorrer cada elementos de una ruta hacemos
-ruta = os.walk("/home/emanuel/Recetas")
+
+# Ruta local usuario
+ruta_local = Path(Path.home(),"Recetas")
+ruta = os.walk(ruta_local)
 
 for carpeta, subcarpetas, archivos in ruta:
     print(f"En la carpeta {carpeta}")
@@ -22,7 +26,7 @@ for carpeta, subcarpetas, archivos in ruta:
         for subcarpeta in subcarpetas:
             print(f"\t{subcarpeta}")
     else:
-        print(f"No hay subcarpetas")
+        print(f"No hay subcarpetas en la carpeta {carpeta}")
     if len(archivos) > 0:
         print(f"Los archivos son:")
         for archivo in archivos:
@@ -32,5 +36,5 @@ for carpeta, subcarpetas, archivos in ruta:
             if archivo.startswith("E"):
                 print(f"\t{archivo}")
     else:
-        print(f"No hay archivos")
+        print(f"No hay archivos en esta carpeta")
     print("\n")
