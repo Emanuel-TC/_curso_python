@@ -12,6 +12,8 @@ def saludar():
           \tF) Farmacia
           \tP) Perfumería
           """)
+
+# Vamos a usar un diccionario para formar el turno en turno xd
 contadores = {'c': 0, 'f': 0, 'p': 0}
 while True:
     saludar()
