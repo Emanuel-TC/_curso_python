@@ -2,6 +2,29 @@ import re
 import time
 from os import system
 
+'''Significado de valores en expresiones regulares
+    caracter    descripción             ejemplo         Coincidencias
+    /d          dígito numérico         v\d.\d\d        v1.23   v3.21   v5.98
+    /w          caracter alfanumérico   \w\w\w-\w\w     abc-de  zqk-gh  lkj-fd
+    /s          espacio en blanco       número\s\d\d    número 25   número 64 número 98
+    
+    ************  En mayúscula el valor significa lo contrario que en minúcula  *************
+    caracter    descripción             ejemplo         Coincidencias
+    /D          NO numérico             \D\D\D\D        Ksd-    .,LM    ?-A-
+    /W          NO alfanumérico         \W\W\W\W        .,-?    ----    ?¡.,
+    /S          NO espacio en blanco    \S\S\S\S        1234    -.,M    mns?
+    
+    ************  SIGNOS CUANTIFICADORES  *************
+    caracter    descripción             ejemplo         Coincidencias
+    +           1 o más veces           código_\d-\d+   código_1-1  código_2-97 código_3-321
+    {n}         se repite n veces       \d-\d{4}        1-9876  2-6543  3-3698
+    {n,m}       se repite de n a m veces \w{3,5}        a123   b12  32165
+    {n,}        desde n hacia arriba      -\d{4,}-       -1234-   -98765-  -369852147-
+    *           0  o más veces             \w\s*\w      s     s   vv     m a   f       6
+    ?           1 o 0                   casa?           casa    casas
+    
+'''
+
 '''texto = "Si necesitas ayuda llama al (01) 800-456-9999 las 24 horas al servicio del sistema online"
 numero = r'\d{3}-\d{3}-\d{4}'
 print(re.search(numero, texto).group())
@@ -43,8 +66,8 @@ def verificar_email(email):
     else:
         print("La dirección de email es incorrecta")
 
-#texto = input('Ingrese su email:\n')
-#verificar_email(texto)
+texto = input('Ingrese su email:\n')
+verificar_email(texto)
 
 
 '''
@@ -62,8 +85,8 @@ def verificar_saludo(frase):
         print("Ok")
     else:
         print("No has saludado")
-#frase = input("Ingresa una frase, no olvides inciar con un 'Hola':\n")
-#verificar_saludo(frase)
+frase = input("Ingresa una frase, no olvides inciar con un 'Hola':\n")
+verificar_saludo(frase)
 
 '''
 El código postal de una región determinada se forma a partir de dos caracteres alfanuméricos y cuatro numéricos a 
