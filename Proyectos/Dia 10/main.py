@@ -1,5 +1,6 @@
 import pygame
 import random
+import math
 
 # incializar pygame
 pygame.init()
@@ -35,7 +36,7 @@ borde_derecho = 736
 # posicion enemigo
 enemigo_x = random.randint(0, 736)
 enemigo_y = random.randint(50, 200)
-posicion_enemigo_x_cambio = 1
+posicion_enemigo_x_cambio = 0.5
 posicion_enemigo_y_cambio = 50
 
 
@@ -43,8 +44,12 @@ posicion_enemigo_y_cambio = 50
 bala_x = 0
 bala_y = 500
 posicion_bala_x_cambio = 0
-posicion_bala_y_cambio = 1
+posicion_bala_y_cambio = 3
 bala_visible = False
+
+
+# puntaje
+puntaje = 0
 
 
 # teclas
@@ -68,6 +73,16 @@ def disparar_bala(x, y):
     pantalla.blit(imagen_bala,(x + 16, y + 10)) # se les suman valores a la posición recibida para que no aparezan en la misma posición de la nave, sino un poco más arriba/centrado
 
 
+# función detectar colicisiones
+def hay_colisión(x_1,y_1,x_2,y_2):
+    x2__menos_x_1_todo_al_cuadrado = math.pow(x_2 - x_1, 2)
+    y_2_menos_y_1_todo_al_cuadrado = math.pow(y_2 - y_1, 2)
+    distancia = math.sqrt(x2__menos_x_1_todo_al_cuadrado + y_2_menos_y_1_todo_al_cuadrado)
+    if distancia < 27:
+        return True
+    else:
+        return False
+
 
 se_ejecuta = True
 
@@ -88,7 +103,9 @@ while se_ejecuta:
             if evento.key == tecla_derecha:
                 posicion_jugador_x_cambio = se_mueve_a_la_derecha
             if evento.key == pygame.K_SPACE:
-                disparar_bala(jugador_x,bala_y)
+                if not bala_visible:
+                    bala_x = jugador_x
+                    disparar_bala(bala_x,bala_y)
         # soltar teclas
         if evento.type == pygame.KEYUP:  # tecla soltada
             if (evento.key == tecla_izquierda) or (evento.key == tecla_derecha):
@@ -113,9 +130,23 @@ while se_ejecuta:
         enemigo_y += posicion_enemigo_y_cambio
 
     # movimiento bala
+    if bala_y <= -24:
+        bala_y = 500
+        bala_visible = False
     if bala_visible:
-        disparar_bala(jugador_x,bala_y)
+        disparar_bala(bala_x,bala_y)
         bala_y -= posicion_bala_y_cambio
+    # colisión
+    colision = hay_colisión(enemigo_x,enemigo_y,bala_x, bala_y)
+    if colision:
+        # la bala se situa nuevamente a la posición y del jugador
+        bala_y = 500
+        bala_visible = False
+        puntaje += 1
+        print(puntaje)
+        enemigo_x = random.randint(0, 736)
+        enemigo_y = random.randint(50, 200)
+
 
     posicion_jugador(jugador_x,jugador_y)
     posicion_enemigo(enemigo_x, enemigo_y)
