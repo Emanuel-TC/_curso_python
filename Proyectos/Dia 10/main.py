@@ -11,7 +11,7 @@ color_pantalla = (16, 33, 66)
 # imágenes
 icono_juego = pygame.image.load("imagenes/cohete.png")
 imagen_nave = pygame.image.load("imagenes/transbordador-espacial.png")
-imagen_enemigo = pygame.image.load("imagenes/ovni.png")
+
 imagen_fondo = pygame.image.load("imagenes/fondo.png")
 imagen_bala = pygame.image.load("imagenes/bala.png")
 
@@ -33,11 +33,20 @@ borde_izquierdo = 0
 borde_derecho = 736
 
 
-# posicion enemigo
-enemigo_x = random.randint(0, 736)
-enemigo_y = random.randint(50, 200)
-posicion_enemigo_x_cambio = 0.5
-posicion_enemigo_y_cambio = 50
+# variables enemigo
+imagen_enemigo =  []
+enemigo_x = []
+enemigo_y = []
+posicion_enemigo_x_cambio = []
+posicion_enemigo_y_cambio = []
+cantidad_enemigos = 8
+
+for _ in range(cantidad_enemigos):
+    imagen_enemigo.append(pygame.image.load("imagenes/ovni.png"))
+    enemigo_x.append(random.randint(0, 736))
+    enemigo_y.append(random.randint(50, 200))
+    posicion_enemigo_x_cambio.append(0.5)
+    posicion_enemigo_y_cambio.append(50)
 
 
 # posición bala
@@ -50,7 +59,7 @@ bala_visible = False
 
 # puntaje
 puntaje = 0
-
+fuente =
 
 # teclas
 tecla_derecha = pygame.K_RIGHT
@@ -63,8 +72,8 @@ def posicion_jugador(x, y):
 
 
 # funcion jugador
-def posicion_enemigo(x, y):
-    pantalla.blit(imagen_enemigo, (x, y))
+def posicion_enemigo(x, y, ene):
+    pantalla.blit(imagen_enemigo[ene], (x, y))
 
 
 def disparar_bala(x, y):
@@ -74,7 +83,7 @@ def disparar_bala(x, y):
 
 
 # función detectar colicisiones
-def hay_colisión(x_1,y_1,x_2,y_2):
+def hay_colision(x_1,y_1,x_2,y_2):
     x2__menos_x_1_todo_al_cuadrado = math.pow(x_2 - x_1, 2)
     y_2_menos_y_1_todo_al_cuadrado = math.pow(y_2 - y_1, 2)
     distancia = math.sqrt(x2__menos_x_1_todo_al_cuadrado + y_2_menos_y_1_todo_al_cuadrado)
@@ -120,14 +129,27 @@ while se_ejecuta:
         jugador_x = 736
 
     # modificar posicion enemigo
-    enemigo_x += posicion_enemigo_x_cambio
+    for enemigo in range(cantidad_enemigos):
+        enemigo_x[enemigo] += posicion_enemigo_x_cambio[enemigo]
     # mantener dentro de bordes jugador
-    if enemigo_x <= borde_izquierdo:  # si toca el borde izquierdo cambia su dirección a la derecha
-        posicion_enemigo_x_cambio = se_mueve_a_la_derecha
-        enemigo_y += posicion_enemigo_y_cambio
-    elif enemigo_x >= borde_derecho:  # si toca el borde derecho cambia su dirección a la izquierda
-        posicion_enemigo_x_cambio = se_mueve_a_la_izquierda
-        enemigo_y += posicion_enemigo_y_cambio
+        if enemigo_x[enemigo] <= borde_izquierdo:  # si toca el borde izquierdo cambia su dirección a la derecha
+            posicion_enemigo_x_cambio[enemigo] = se_mueve_a_la_derecha
+            enemigo_y[enemigo] += posicion_enemigo_y_cambio[enemigo]
+        elif enemigo_x[enemigo] >= borde_derecho:  # si toca el borde derecho cambia su dirección a la izquierda
+            posicion_enemigo_x_cambio[enemigo] = se_mueve_a_la_izquierda
+            enemigo_y[enemigo] += posicion_enemigo_y_cambio[enemigo]
+        # colisión
+        colision = hay_colision(enemigo_x[enemigo], enemigo_y[enemigo], bala_x, bala_y)
+        if colision:
+            # la bala se situa nuevamente a la posición y del jugador
+            bala_y = 500
+            bala_visible = False
+            puntaje += 1
+            #print(puntaje)
+            enemigo_x[enemigo] = random.randint(0, 736)
+            enemigo_y[enemigo] = random.randint(50, 200)
+        # aparición de enemigo
+        posicion_enemigo(enemigo_x[enemigo], enemigo_y[enemigo],enemigo)
 
     # movimiento bala
     if bala_y <= -24:
@@ -136,19 +158,10 @@ while se_ejecuta:
     if bala_visible:
         disparar_bala(bala_x,bala_y)
         bala_y -= posicion_bala_y_cambio
-    # colisión
-    colision = hay_colisión(enemigo_x,enemigo_y,bala_x, bala_y)
-    if colision:
-        # la bala se situa nuevamente a la posición y del jugador
-        bala_y = 500
-        bala_visible = False
-        puntaje += 1
-        print(puntaje)
-        enemigo_x = random.randint(0, 736)
-        enemigo_y = random.randint(50, 200)
+
 
 
     posicion_jugador(jugador_x,jugador_y)
-    posicion_enemigo(enemigo_x, enemigo_y)
+
     # Actualizar pantalla
     pygame.display.update()
