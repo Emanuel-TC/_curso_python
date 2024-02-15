@@ -1,6 +1,7 @@
 import pygame
 import random
 import math
+from pygame import mixer
 
 # incializar pygame
 pygame.init()
@@ -31,6 +32,12 @@ se_mueve_a_la_derecha = 1
 se_mueve_a_la_izquierda = -1
 borde_izquierdo = 0
 borde_derecho = 736
+
+
+# música
+mixer.music.load("audio/MusicaFondo.mp3")
+mixer.music.set_volume(0.3)
+mixer.music.play(-1)
 
 
 # variables enemigo
@@ -118,8 +125,11 @@ while se_ejecuta:
             if evento.key == tecla_derecha:
                 posicion_jugador_x_cambio = se_mueve_a_la_derecha
             if evento.key == pygame.K_SPACE:
+                sonido_bala = mixer.Sound("audio/disparo.mp3")
+
                 if not bala_visible:
                     bala_x = jugador_x
+                    sonido_bala.play()
                     disparar_bala(bala_x,bala_y)
         # soltar teclas
         if evento.type == pygame.KEYUP:  # tecla soltada
@@ -147,6 +157,8 @@ while se_ejecuta:
         # colisión
         colision = hay_colision(enemigo_x[enemigo], enemigo_y[enemigo], bala_x, bala_y)
         if colision:
+            sonido_colision = mixer.Sound("audio/Golpe.mp3")
+            sonido_colision.play()
             # la bala se situa nuevamente a la posición y del jugador
             bala_y = 500
             bala_visible = False
