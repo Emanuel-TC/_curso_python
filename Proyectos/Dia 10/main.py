@@ -59,7 +59,9 @@ bala_visible = False
 
 # puntaje
 puntaje = 0
-fuente =
+fuente = pygame.font.Font("freesansbold.ttf", 32)
+texto_x = 10
+texto_y = 10
 
 # teclas
 tecla_derecha = pygame.K_RIGHT
@@ -91,6 +93,10 @@ def hay_colision(x_1,y_1,x_2,y_2):
         return True
     else:
         return False
+
+def mostrar_puntaje(x,y):
+    texto = fuente.render(f"Puntaje: {puntaje}",True,(255,255,255))
+    pantalla.blit(texto,(x,y))
 
 
 se_ejecuta = True
@@ -162,6 +168,7 @@ while se_ejecuta:
 
 
     posicion_jugador(jugador_x,jugador_y)
+    mostrar_puntaje(texto_x,texto_y)
 
     # Actualizar pantalla
     pygame.display.update()
