@@ -106,6 +106,13 @@ def mostrar_puntaje(x,y):
     pantalla.blit(texto,(x,y))
 
 
+# texto final de juego
+fuente_final = pygame.font.Font("freesansbold.ttf", 64)
+def texto_final():
+    mi_fuente = fuente_final.render("JUEGO TERMINADO",True,(255,255,255))
+    pantalla.blit(mi_fuente,(60,200))
+
+
 se_ejecuta = True
 
 
@@ -146,6 +153,13 @@ while se_ejecuta:
 
     # modificar posicion enemigo
     for enemigo in range(cantidad_enemigos):
+        # fin del juego
+        if enemigo_y[enemigo] > 500:
+            for k in range(cantidad_enemigos):
+                enemigo_y[k] = 1000
+            texto_final()
+            break
+
         enemigo_x[enemigo] += posicion_enemigo_x_cambio[enemigo]
     # mantener dentro de bordes jugador
         if enemigo_x[enemigo] <= borde_izquierdo:  # si toca el borde izquierdo cambia su dirección a la derecha
