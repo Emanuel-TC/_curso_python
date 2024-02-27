@@ -182,5 +182,136 @@ for postre in lista_postres:
                                    column=1)
     contador += 1
 
+# variables
+var_costo_comida = StringVar()
+var_costo_bebida = StringVar()
+var_costo_postre = StringVar()
+var_subtotal = StringVar()
+var_impuesto = StringVar()
+var_total = StringVar()
+
+# etiquietas de costo y campos de entrada
+# comidas
+etiqueta_costo_comida = Label(panel_costos,
+                              text='Costo Comida',
+                              font=('Arial', 12, 'bold'),
+                              bg='RoyalBlue3',
+                              fg='white')
+# ubicación de etiqueta costo comida
+etiqueta_costo_comida.grid(row=0,
+                           column=0)
+texto_costo_comida = Entry(panel_costos,
+                           font=('Arial', 12, 'bold'),
+                           bd=1,
+                           width=10,
+                           state='readonly',
+                           textvariable=var_costo_comida)
+# ubicación de etiqueta texto costo comida
+texto_costo_comida.grid(row=0,
+                        column=1,
+                        padx=41)
+
+# etiquietas de costo y campos de entrada
+# bebidas
+etiqueta_costo_bebida = Label(panel_costos,
+                              text='Costo Bebidas',
+                              font=('Arial', 12, 'bold'),
+                              bg='RoyalBlue3',
+                              fg='white')
+# ubicación de etiqueta costo bebida
+etiqueta_costo_bebida.grid(row=1,
+                           column=0)
+texto_costo_bebida = Entry(panel_costos,
+                           font=('Arial', 12, 'bold'),
+                           bd=1,
+                           width=10,
+                           state='readonly',
+                           textvariable=var_costo_bebida)
+# ubicación de etiqueta texto costo bebida
+texto_costo_bebida.grid(row=1,
+                        column=1,
+                        padx=41)
+# etiquietas de costo y campos de entrada
+# postres
+etiqueta_costo_postre = Label(panel_costos,
+                              text='Costo Postres',
+                              font=('Arial', 12, 'bold'),
+                              bg='RoyalBlue3',
+                              fg='white')
+# ubicación de etiqueta costo postres
+etiqueta_costo_postre.grid(row=2,
+                           column=0)
+texto_costo_postre = Entry(panel_costos,
+                           font=('Arial', 12, 'bold'),
+                           bd=1,
+                           width=10,
+                           state='readonly',
+                           textvariable=var_costo_postre)
+# ubicación de etiqueta texto costo postres
+texto_costo_postre.grid(row=2,
+                        column=1,
+                        padx=41)
+
+# etiquietas de costo y campos de entrada
+# subtotal
+etiqueta_subtotal = Label(panel_costos,
+                          text='Subtotal',
+                          font=('Arial', 12, 'bold'),
+                          bg='RoyalBlue3',
+                          fg='white')
+# ubicación de etiqueta subtotal
+etiqueta_subtotal.grid(row=0,
+                       column=2)
+texto_subtotal = Entry(panel_costos,
+                       font=('Arial', 12, 'bold'),
+                       bd=1,
+                       width=10,
+                       state='readonly',
+                       textvariable=var_subtotal)
+# ubicación de etiqueta texto subtotal
+texto_subtotal.grid(row=0,
+                    column=3,
+                    padx=41)
+
+# etiquietas de costo y campos de entrada
+# Impuesto
+etiqueta_impuesto = Label(panel_costos,
+                          text='Impuestos',
+                          font=('Arial', 12, 'bold'),
+                          bg='RoyalBlue3',
+                          fg='white')
+# ubicación de etiqueta costo impuestos
+etiqueta_impuesto.grid(row=1,
+                       column=2)
+texto_impuesto = Entry(panel_costos,
+                       font=('Arial', 12, 'bold'),
+                       bd=1,
+                       width=10,
+                       state='readonly',
+                       textvariable=var_impuesto)
+# ubicación de etiqueta texto impuestos
+texto_impuesto.grid(row=1,
+                    column=3,
+                    padx=41)
+# etiquietas de costo y campos de entrada
+# total
+etiqueta_total = Label(panel_costos,
+                       text='Total',
+                       font=('Arial', 12, 'bold'),
+                       bg='RoyalBlue3',
+                       fg='white')
+# ubicación de etiqueta costo total
+etiqueta_total.grid(row=2,
+                    column=2)
+texto_total = Entry(panel_costos,
+                    font=('Arial', 12, 'bold'),
+                    bd=1,
+                    width=10,
+                    state='readonly',
+                    textvariable=var_total)
+# ubicación de etiqueta texto costo total
+texto_total.grid(row=2,
+                 column=3,
+                 padx=41)
 # evitar que la ventana se cierre
 aplicacion.mainloop()
