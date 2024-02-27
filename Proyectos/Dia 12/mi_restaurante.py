@@ -96,6 +96,9 @@ for comida in lista_comidas:
     # crear cuadros de entrada
     cuadros_comida.append('')
     texto_comida.append('')
+    # valores por defecto
+    texto_comida[contador] = StringVar()
+    texto_comida[contador].set('0')
     cuadros_comida[contador] = Entry(panel_comidas,
                                      font=('Arial', 19, 'bold'),
                                      bd=1,
@@ -130,6 +133,9 @@ for bebida in lista_bebidas:
     # crear cuadros de entrada
     cuadros_bebida.append('')
     texto_bebida.append('')
+    # valores por defecto
+    texto_bebida[contador] = StringVar()
+    texto_bebida[contador].set('0')
     cuadros_bebida[contador] = Entry(panel_bebidas,
                                      font=('Arial', 19, 'bold'),
                                      bd=1,
@@ -163,6 +169,9 @@ for postre in lista_postres:
     # crear cuadros de entrada
     cuadros_postres.append('')
     texto_postres.append('')
+    # valores por defecto
+    texto_postres[contador] = StringVar()
+    texto_postres[contador].set('0')
     cuadros_postres[contador] = Entry(panel_postres,
                                       font=('Arial', 19, 'bold'),
                                       bd=1,
