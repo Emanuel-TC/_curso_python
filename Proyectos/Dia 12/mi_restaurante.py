@@ -1,5 +1,6 @@
 from tkinter import *
-
+import random
+import datetime
 ''' Este programa realizará la gestión de un restaurante usando la librería tkinter'''
 
 operador = ''
@@ -90,6 +91,52 @@ def total():
     var_impuesto.set(f'$ {round(impuestos, 2)}')
     var_subtotal.set(f'$ {round(subtotal, 2)}')
     var_total.set(f'$ {round(total, 2)}')
+
+def recibo():
+    texto_recibo.delete(1.0,END)
+    numero_recibo = f'N#{random.randint(1000,9999)}'
+    fecha = datetime.datetime.now()
+    fecha_recibo = f'{fecha.day}/{fecha.month}/{fecha.year} - {fecha.hour}:{fecha.minute}'
+    texto_recibo.insert(END,f'    Datos: \t{numero_recibo}\t\t{fecha_recibo}\n')
+    texto_recibo.insert(END,f'*'*62 + '\n')
+    texto_recibo.insert(END,f'Items\t\tCant.\tCosto Items\n')
+    texto_recibo.insert(END, f'-'*74)
+
+    #generar recibo para items comida
+    x = 0
+    for comida in texto_comida:
+        if comida.get() != '0':
+            texto_recibo.insert(END,f'{lista_comidas[x]}\t\t{comida.get()}\t $ {round(int(comida.get()) * precios_comida[x],2)}\n')
+        x += 1
+
+    # generar recibo para items bebida
+    x = 0
+    for bebida in texto_bebida:
+        if bebida.get() != '0':
+            texto_recibo.insert(END,
+                                f'{lista_bebidas[x]}\t\t{bebida.get()}\t $ {round(int(bebida.get()) * precios_bebida[x],2)}\n')
+        x += 1
+
+    # generar recibo para items bebida
+    x = 0
+    for postres in texto_postres:
+        if postres.get() != '0':
+            texto_recibo.insert(END,
+                                f'{lista_postres[x]}\t\t{postres.get()}\t $ {round(int(postres.get()) * precios_postres[x],2)}\n')
+        x += 1
+
+    texto_recibo.insert(END, f'-' * 74)
+    texto_recibo.insert(END,f'Costo de la Comida: \t\t\t{var_costo_comida.get()}\n')
+    texto_recibo.insert(END, f'Costo de la Bebida: \t\t\t{var_costo_bebida.get()}\n')
+    texto_recibo.insert(END, f'Costo de los Postres: \t\t\t{var_costo_postre.get()}\n')
+
+    texto_recibo.insert(END, f'-' * 74)
+    texto_recibo.insert(END, f'Subtotal: \t\t\t{var_subtotal.get()}\n')
+    texto_recibo.insert(END, f'Impuestos: \t\t\t{var_impuesto.get()}\n')
+    texto_recibo.insert(END, f'Total: \t\t\t{var_total.get()}\n')
+
+    texto_recibo.insert(END, f'*' * 62 + '\n')
+    texto_recibo.insert(END, 'Lo esperamos pronto')
 
 # iniciar tkinter
 aplicacion = Tk()
@@ -424,7 +471,7 @@ for boton in botones:
     columnas += 1
 
 botones_creados[0].config(command=total)
-#botones_creados[1].config(command=recibo)
+botones_creados[1].config(command=recibo)
 #botones_creados[2].config(command=guardar)
 #botones_creados[3].config(command=reset)
 
