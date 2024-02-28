@@ -3,6 +3,9 @@ from tkinter import *
 ''' Este programa realizará la gestión de un restaurante usando la librería tkinter'''
 
 operador = ''
+precios_comida = [1.32, 1.65, 2.31, 3.22, 1.22, 1.99, 2.05, 2.65]
+precios_bebida = [0.25, 0.99, 1.21, 1.54, 1.08, 1.10, 2.00, 1.58]
+precios_postres = [1.54, 1.68, 1.32, 1.97, 2.55, 2.14, 1.94, 1.74]
 
 def clic_boton(numero):
     global operador
@@ -56,6 +59,37 @@ def revisar_check():
             cuadros_postres[x].config(state=DISABLED)
             texto_postres[x].set('0')
         x += 1
+
+def total():
+    subtotal_comida = 0
+    p = 0
+    for cantidad in texto_comida:
+        subtotal_comida = subtotal_comida + (float(cantidad.get()) * precios_comida[p])
+        p += 1
+
+    subtotal_bebida = 0
+    p = 0
+    for cantidad in texto_bebida:
+        subtotal_bebida = subtotal_bebida + (float(cantidad.get()) * precios_bebida[p])
+        p += 1
+
+    subtotal_postres = 0
+    p = 0
+    for cantidad in texto_postres:
+        subtotal_postres = subtotal_postres + (float(cantidad.get()) * precios_postres[p])
+        p += 1
+
+    subtotal = subtotal_comida + subtotal_bebida + subtotal_postres
+    impuestos = subtotal * 0.17
+    total = subtotal + impuestos
+
+    # asignación de valores a etiquetas de valores
+    var_costo_comida.set(f'$ {round(subtotal_comida,2)}')
+    var_costo_bebida.set(f'$ {round(subtotal_bebida, 2)}')
+    var_costo_postre.set(f'$ {round(subtotal_postres, 2)}')
+    var_impuesto.set(f'$ {round(impuestos, 2)}')
+    var_subtotal.set(f'$ {round(subtotal, 2)}')
+    var_total.set(f'$ {round(total, 2)}')
 
 # iniciar tkinter
 aplicacion = Tk()
@@ -374,6 +408,7 @@ texto_total.grid(row=2,
 
 # botones
 botones = ['total','recibo','guardar','reset']
+botones_creados = []
 columnas = 0
 for boton in botones:
     boton = Button(panel_botones,
@@ -383,9 +418,15 @@ for boton in botones:
                    bg='purple3',
                    bd=1,
                    width=9)
+    botones_creados.append(boton)
     boton.grid(row=0,
                column=columnas)
     columnas += 1
+
+botones_creados[0].config(command=total)
+#botones_creados[1].config(command=recibo)
+#botones_creados[2].config(command=guardar)
+#botones_creados[3].config(command=reset)
 
 # área de recibo
 texto_recibo = Text(panel_recibos,
