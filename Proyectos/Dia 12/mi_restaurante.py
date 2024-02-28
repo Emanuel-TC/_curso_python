@@ -22,6 +22,41 @@ def obtener_resultado():
     visor_calculadora.insert(0,resultado)
     operador = ''
 
+def revisar_check():
+    x = 0
+    for c in cuadros_comida:
+        if variables_comida[x].get() == 1:
+            cuadros_comida[x].config(state=NORMAL)
+            if cuadros_comida[x].get() == '0':
+                cuadros_comida[x].delete(0,END)
+            cuadros_comida[x].focus()
+        else:
+            cuadros_comida[x].config(state=DISABLED)
+            texto_comida[x].set('0')
+        x += 1
+    x = 0
+    for c in cuadros_bebida:
+        if variables_bebida[x].get() == 1:
+            cuadros_bebida[x].config(state=NORMAL)
+            if cuadros_bebida[x].get() == '0':
+                cuadros_bebida[x].delete(0,END)
+            cuadros_bebida[x].focus()
+        else:
+            cuadros_bebida[x].config(state=DISABLED)
+            texto_bebida[x].set('0')
+        x += 1
+    x = 0
+    for c in cuadros_postres:
+        if variables_postre[x].get() == 1:
+            cuadros_postres[x].config(state=NORMAL)
+            if cuadros_postres[x].get() == '0':
+                cuadros_postres[x].delete(0,END)
+            cuadros_postres[x].focus()
+        else:
+            cuadros_postres[x].config(state=DISABLED)
+            texto_postres[x].set('0')
+        x += 1
+
 # iniciar tkinter
 aplicacion = Tk()
 
@@ -108,7 +143,8 @@ for comida in lista_comidas:
                          fg='blue4',
                          onvalue=1,
                          offvalue=0,
-                         variable=variables_comida[contador])
+                         variable=variables_comida[contador],
+                         command=revisar_check)
     comida.grid(row=contador,
                 column=0,
                 sticky=W)
@@ -146,7 +182,8 @@ for bebida in lista_bebidas:
                          fg='grey15',
                          onvalue=1,
                          offvalue=0,
-                         variable=variables_bebida[contador])
+                         variable=variables_bebida[contador],
+                         command=revisar_check)
     bebida.grid(row=contador,
                 column=0,
                 sticky=W)
@@ -182,7 +219,8 @@ for postre in lista_postres:
                          fg='grey15',
                          onvalue=1,
                          offvalue=0,
-                         variable=variables_postre[contador])
+                         variable=variables_postre[contador],
+                         command=revisar_check)
     postre.grid(row=contador,
                 column=0,
                 sticky=W)
