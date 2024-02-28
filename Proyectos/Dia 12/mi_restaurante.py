@@ -313,5 +313,31 @@ texto_total = Entry(panel_costos,
 texto_total.grid(row=2,
                  column=3,
                  padx=41)
+
+# botones
+botones = ['total','recibo','guardar','reset']
+columnas = 0
+for boton in botones:
+    boton = Button(panel_botones,
+                   text=boton.title(),
+                   font=('Arial', 14, 'bold'),
+                   fg='white',
+                   bg='purple3',
+                   bd=1,
+                   width=9)
+    boton.grid(row=0,
+               column=columnas)
+    columnas += 1
+
+# área de recibo
+texto_recibo = Text(panel_recibos,
+                    font=('Arial', 12, 'bold'),
+                    bd=1,
+                    width=42,
+                    height=10)
+texto_recibo.grid(row=0,
+                  column=0)
+
+
 # evitar que la ventana se cierre
 aplicacion.mainloop()
