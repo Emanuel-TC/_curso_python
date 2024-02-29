@@ -20,12 +20,14 @@ def borrar():
     operador = ''
     visor_calculadora.delete(0,END)
 
+
 def obtener_resultado():
     global operador
     resultado = str(eval(operador))
     visor_calculadora.delete(0, END)
     visor_calculadora.insert(0,resultado)
     operador = ''
+
 
 def revisar_check():
     x = 0
@@ -62,6 +64,7 @@ def revisar_check():
             texto_postres[x].set('0')
         x += 1
 
+
 def total():
     subtotal_comida = 0
     p = 0
@@ -92,6 +95,7 @@ def total():
     var_impuesto.set(f'$ {round(impuestos, 2)}')
     var_subtotal.set(f'$ {round(subtotal, 2)}')
     var_total.set(f'$ {round(total, 2)}')
+
 
 def recibo():
     texto_recibo.delete(1.0,END)
@@ -146,6 +150,39 @@ def guardar():
     archivo.write(info_recibo)
     archivo.close()
     messagebox.showinfo('Información','Su recibo ha sido guardado')
+
+
+def reset():
+    texto_recibo.delete(0.1,END)
+    # Poner texto en 0
+    for texto in texto_comida:
+        texto.set('0')
+    for texto in texto_bebida:
+        texto.set('0')
+    for texto in texto_postres:
+        texto.set('0')
+    # Deshabilitar cuadros
+    for cuadro in cuadros_comida:
+        cuadro.config(state=DISABLED)
+    for cuadro in cuadros_bebida:
+        cuadro.config(state=DISABLED)
+    for cuadro in cuadros_postres:
+        cuadro.config(state=DISABLED)
+    # deshabilitar checkbox
+    for variable in variables_comida:
+        variable.set(0)
+    for variable in variables_bebida:
+        variable.set(0)
+    for variable in variables_postre:
+        variable.set(0)
+    # reset etiquetas de texto
+    var_costo_comida.set('0')
+    var_costo_bebida.set('0')
+    var_costo_postre.set('0')
+    var_subtotal.set('0')
+    var_impuesto.set('0')
+    var_total.set('0')
+
 
 # iniciar tkinter
 aplicacion = Tk()
@@ -482,7 +519,7 @@ for boton in botones:
 botones_creados[0].config(command=total)
 botones_creados[1].config(command=recibo)
 botones_creados[2].config(command=guardar)
-#botones_creados[3].config(command=reset)
+botones_creados[3].config(command=reset)
 
 # área de recibo
 texto_recibo = Text(panel_recibos,
