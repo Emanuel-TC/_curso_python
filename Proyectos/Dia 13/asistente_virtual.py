@@ -1,4 +1,4 @@
-# import pyttsx
+import pyttsx3
 import speech_recognition as sr
 import pywhatkit
 import yfinance as yf
@@ -59,4 +59,14 @@ def transformar_audio_en_texto():
             # devolver el error
             return "sigo esperando"
 
-transformar_audio_en_texto()
+def hablar(mensaje):
+
+    # encender el motor de pyttsx3
+    engine = pyttsx3.init()
+
+    # pronunciar mensaje
+    engine.say(mensaje)
+    engine.runAndWait()
+
+##transformar_audio_en_texto()
+hablar("Hola mundo")
