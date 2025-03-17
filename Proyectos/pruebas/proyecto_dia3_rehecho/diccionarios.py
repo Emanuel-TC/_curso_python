@@ -3,6 +3,7 @@ diccionario = {'c1': 'valor1',
                 'c2': 'valor1',
                 'c3': 'valor3'}
 # print(diccionario['c1'])
+# Un diccionarioo puede tener cualquier tipo de dato, incluso otro diccionario
 
 clientes = {    'cliente1': {
                             'nombre': 'Juan',
@@ -19,3 +20,8 @@ clientes = {    'cliente1': {
 }
 print(f"El cliente {clientes['cliente1']['nombre']} {clientes['cliente1']['apellido']} tiene {clientes['cliente1']['edad']} años")
 print(f"El cliente {clientes['cliente2']['nombre']} {clientes['cliente2']['apellido']} tiene {clientes['cliente2']['edad']} años")
+
+dic = { 'c1:': ['a', 'b', 'c'],
+        'c2': ['d', 'e', 'f']
+}
+print(dic['c2'][1].upper())
