@@ -18,3 +18,10 @@ mi_set_strings = {'hola', 'mundo', 'hola', 'mundo', 'hola', 'mundo'}
 print(mi_set_strings)
 print('hola' in mi_set_strings)
 print('adios' in mi_set_strings)
+
+'''
+Práctica Sets 2
+Elimina un elemento al azar del siguiente set, utilizando métodos de sets.
+'''
+sorteo = {"Camila", "Margarita", "Axel", "Jorge", "Miguel", "Mónica"}
+print(f"Quien gana el sorteo es {sorteo.pop()}")
